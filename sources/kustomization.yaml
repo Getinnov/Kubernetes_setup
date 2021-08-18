@@ -1,0 +1,8 @@
+kind: Kustomization
+namespace: cert-manager
+configMapGenerator:
+  - name: letsencrypt
+    literals:
+    - email={{EMAIL}}
+resources:
+  - letsencrypt.yaml
