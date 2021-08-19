@@ -13,13 +13,7 @@ This folder contain:
   file and folder to deploy an working app on a specified domain in the namespace `nginx-test`
   you will have to change the value off:
   * `{{DOMAIN}}` the domain name used to link to the nginx app 
-
-From this directory
-
-```bash
-kubectl create namespace cert-manager
-kubectl apply -f ./sources/cert-manager.v0.11.0.yaml
-sleep 120
-kubectl apply -f ./example/letsencrypt.yaml
-kubectl -n nginx-test apply -f ./example/nginx.yaml
-```
+  To launch the app use, from this directory:
+  ```
+  kubectl apply -k ./
+  ```
