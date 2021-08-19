@@ -1,0 +1,9 @@
+kind: Kustomization
+namespace: nginx-test
+configMapGenerator:
+  - name: nginx-test
+    literals:
+    - domain={{DOMAIN}}
+resources:
+  - ./nginx-test/nginx-test.yaml
+  - ./nginx-test/ingress-test.yaml
