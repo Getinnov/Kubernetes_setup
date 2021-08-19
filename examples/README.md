@@ -16,7 +16,7 @@
   File and folder to deploy an **nginx app** on a specified **domain** in the namespace `nginx-test`
   you will have to change the value of:
 
-  * `{{DOMAIN}}`: the **domain name** used to link to the nginx app 
+  * `{{DOMAIN}}`: the **domain name** used to link to the nginx app (`./nginx-test/ingress.yaml`)
 
   To launch the app use, from this directory:
 
