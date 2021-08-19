@@ -11,7 +11,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 ### Steps:
 
   * Edit `./cert-manager/kustomization.yaml`:
-     * Replace `{{EMAIL}}` by your own *valid* email
+     * Replace `{{EMAIL}}` by your own **valid email**
 
   * *K3s* Install
      * ```
@@ -44,10 +44,10 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
 ### Link with an app
 
-Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress have to be in the same namespace as your app), then edit `./examples/ingress.yaml` and change `{{HOST}}`, `{{PORT}}`, `{{NAME}}` and `{{SERVICE}}` then run
+Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be in the same namespace as your app), then edit `./examples/ingress-example.yaml` and change `{{NAME}}`, `{{DOMAIN}}`, `{{SERVICE}}` and `{{PORT}}` then run
 
 ```
-kubectl -n {{APP_NAMESPACE}} apply -f ./sources/ingress.yaml
+kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 ```
 
 
