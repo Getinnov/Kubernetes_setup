@@ -1,4 +1,4 @@
-## Kubernetes_setup
+## Kubernetes (k3s) setup and reverse https (LE) proxy
 
 Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
@@ -44,8 +44,10 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
 ### Link with an app
 
-Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress have to be in the same namespace as your app), then edit `./example/ingress.yaml` and change `{{HOST}}`, `{{PORT}}`, `{{NAME}}` and `{{SERVICE}}` then run
+Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress have to be in the same namespace as your app), then edit `./examples/ingress.yaml` and change `{{HOST}}`, `{{PORT}}`, `{{NAME}}` and `{{SERVICE}}` then run
 
 ```
 kubectl -n {{APP_NAMESPACE}} apply -f ./sources/ingress.yaml
 ```
+
+
