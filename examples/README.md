@@ -13,6 +13,7 @@ This folder contain:
   file and folder to deploy an working app on a specified domain in the namespace `nginx-test`
   you will have to change the value off:
   * `{{DOMAIN}}` the domain name used to link to the nginx app 
+
   To launch the app use, from this directory:
   ```
   kubectl apply -k ./
