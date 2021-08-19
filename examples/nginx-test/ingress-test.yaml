@@ -1,4 +1,3 @@
-apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-test
@@ -9,23 +8,15 @@ spec:
   tls:
     - secretName: nginx-test-cert
       hosts:
-        - valueFrom:
-            configMapKeyRef:
-              name: nginx-test
-              key: domain
+        - {{DOMAIN}}    
   rules:
-  - host: 
-      name: email
-      valueFrom:
-        configMapKeyRef:
-          name: nginx-test
-          key: domain
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: nginx
-              port:
-                number: 80
+    - host: {{DOMAIN}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
