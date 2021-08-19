@@ -1,8 +1,9 @@
 
-This folder contain:
+#### This folder contain:
 
 * `ingress-example.yaml`
-  an ingress file enabling to link an existing application to the reverse proxy
+
+  An ingress file enabling to link an existing application to the reverse proxy
   you will have to change the value of:
   * `{{NAME}}` the ingress name
   * `{{DOMAIN}}` the domain name used to link to your app
@@ -10,8 +11,10 @@ This folder contain:
   * `{{PORT}}` your service's port
 
 * `kustomization.yaml` and `nginx-test`
+
   file and folder to deploy an working app on a specified domain in the namespace `nginx-test`
   you will have to change the value off:
+
   * `{{DOMAIN}}` the domain name used to link to the nginx app 
 
   To launch the app use, from this directory:
