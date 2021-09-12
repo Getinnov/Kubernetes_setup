@@ -21,7 +21,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   * *Cert-manager* install
      * ```
        kubectl create namespace cert-manager
-       kubectl apply -f ./sources/cert-manager.v0.11.0.yaml
+       kubectl apply -f ./cert-manager/cert-manager.v0.11.0.yaml
        sleep 120
        ```
 
@@ -35,6 +35,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 ### Full set of commands
   
   ```
+  nano ./cert-manager/kustomization.yaml
   curl -sfL https://get.k3s.io |  sh -
   kubectl create namespace cert-manager
   kubectl apply -f ./sources/cert-manager.v0.11.0.yaml
