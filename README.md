@@ -63,6 +63,6 @@ kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 
 #### Update your cert-manager:
 ```
- URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url') | grep crds.yaml
+ URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url')
  kubectl apply -f $URL
 ```
