@@ -44,15 +44,6 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   kubectl apply -k ./cert-manager/
   ```
   
-  be sure to have the last version of cert-manager by using:
-  ```
-  URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url')
-  kubectl apply -f $URL
-  ```
-  instead of
-  ```
-  kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
-  ```
 
 ### Link with an app
 
@@ -62,8 +53,3 @@ Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be
 kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 ```
 
-#### Update your cert-manager:
-```
- URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url')
- kubectl apply -f $URL
-```
