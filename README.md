@@ -45,7 +45,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   
   be sure to have the last version of cert-manager by using:
   ```
-  URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url') | grep ager.yaml
+  URL=$(curl --silent "https://api.github.com/repos/jetstack/cert-manager/releases/latest" | jq -r '.assets[0].browser_download_url')
   kubectl apply -f $URL
   ```
   instead of
