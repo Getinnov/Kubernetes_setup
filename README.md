@@ -21,7 +21,8 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   * *Cert-manager* install
      * ```
        kubectl create namespace cert-manager
-       kubectl apply -f ./cert-manager/cert-manager.v0.11.0.yaml
+       kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
+       #https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.crds.yaml
        sleep 120
        ```
 
@@ -38,7 +39,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   nano ./cert-manager/kustomization.yaml
   curl -sfL https://get.k3s.io |  sh -
   kubectl create namespace cert-manager
-  kubectl apply -f ./cert-manager/cert-manager.v0.11.0.yaml
+  kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
   sleep 120
   kubectl apply -k ./cert-manager/
   ```
@@ -50,7 +51,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
   ```
   instead of
   ```
-  kubectl apply -f ./cert-manager/cert-manager.v0.11.0.yaml
+  kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
   ```
 
 ### Link with an app
