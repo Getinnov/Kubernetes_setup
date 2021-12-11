@@ -19,7 +19,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
        ```
 
   * *Cert-manager* install
-     * ```
+     * ```bash
        kubectl create namespace cert-manager
        kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
        #https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.crds.yaml
