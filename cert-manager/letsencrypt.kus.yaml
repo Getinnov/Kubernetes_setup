@@ -9,7 +9,7 @@ spec:
       configMapKeyRef:
         name: letsencrypt
         key: email
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: prod-issuer-account-key
     solvers:
