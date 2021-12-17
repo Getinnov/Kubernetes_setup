@@ -4,7 +4,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
 ### Tested on:
 
-  |OS|HOST|Working|
+  |OS|Provider|Working|
   |-|-|-|
   |Debian 9|OVH|YES|
   |Debian 10|OVH|YES|
