@@ -16,3 +16,5 @@ EOF
 rm node_exporter.tar.gz
 sudo systemctl daemon-reload && sudo systemctl enable nodeexporter && sudo systemctl start nodeexporter
 ```
+
+Note: node_exporter save on this git
