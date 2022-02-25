@@ -13,7 +13,7 @@ ExecStart=/usr/local/bin/node_exporter
 WantedBy=multi-user.target
 EOF
 
-rm -rf node_exporter.tar.gz
+rm node_exporter.tar.gz
 
 $ sudo systemctl daemon-reload \
 && sudo systemctl enable nodeexporter \
