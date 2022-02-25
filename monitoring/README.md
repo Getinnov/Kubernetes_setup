@@ -14,8 +14,5 @@ WantedBy=multi-user.target
 EOF
 
 rm node_exporter.tar.gz
-
-$ sudo systemctl daemon-reload \
-&& sudo systemctl enable nodeexporter \
-&& sudo systemctl start nodeexporter
+sudo systemctl daemon-reload && sudo systemctl enable nodeexporter && sudo systemctl start nodeexporter
 ```
