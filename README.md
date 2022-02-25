@@ -76,3 +76,30 @@ kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
       * Replace `{{IP}}` by your master node ip
       * Replace `{{NODE-TOKEN}}` by your master node node-token
 
+## EDIT POD LIMIT
+
+
+To update your existing installation with an increased max-pods, add a kubelet config file into a k3s :
+ * Edit (or create) `/etc/rancher/k3s/kubelet.config`:
+      * ```
+        apiVersion: kubelet.config.k8s.io/v1beta1
+        kind: KubeletConfiguration
+        maxPods: {{PODS_NUMBER}}
+        ```
+      * Replace `{{PODS_NUMBER}}` by an int
+      
+ * Edit /etc/systemd/system/k3s.service to change the k3s server args:
+      * ```
+        ExecStart=/usr/local/bin/k3s \
+            server \
+                '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
+        ```
+        
+ * Reload systemctl to pick up the service change:
+      * ```
+        sudo systemctl daemon-reload
+        ```
+ * Restart k3s:
+      * ```
+        sudo systemctl restart k3s
+        ```
