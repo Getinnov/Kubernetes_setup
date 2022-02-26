@@ -38,7 +38,7 @@ spec:
           - key: grafana.ini
             path: grafana.ini
           - key: datasource.yml
-            path: conf/provisioning/datasources/datasource.yml
+            path: provisioning/datasources/datasource.yml
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
@@ -46,6 +46,9 @@ spec:
       - name: grafana
         image: grafana/grafana
         imagePullPolicy: Always
+        volumeMounts:
+          - name: grafana-config-volume
+            mountPath: /etc/grafana/
 ---
 apiVersion: v1
 kind: ConfigMap
