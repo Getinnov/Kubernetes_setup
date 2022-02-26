@@ -46,6 +46,40 @@ spec:
           configMap:
            name: prometheus-config
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: monitoring
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -109,55 +143,3 @@ spec:
     name: grafana
     protocol: TCP
     targetPort: 3000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: prometheus
-  namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  tls:
-    - secretName: prometheus-cert
-      hosts:
-        - prometheus.cluster.newtechstack.fr
-  rules:
-    - host: prometheus.cluster.newtechstack.fr
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: prometheus-service
-                port:
-                  number: 9090
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name:  grafana
-  namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  tls:
-    - secretName: grafana-cert
-      hosts:
-        - grafana.cluster.newtechstack.fr
-  rules:
-    - host: grafana.cluster.newtechstack.fr
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: grafana-service
-                port:
-                  number: 3000
