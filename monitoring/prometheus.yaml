@@ -94,16 +94,6 @@ spec:
     targetPort: 9090
   type: NodePort
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  namespace: monitoring
-  name: redirect-https
-spec:
-  redirectScheme:
-    scheme: https
-    permanent: true
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
