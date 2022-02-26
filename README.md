@@ -37,8 +37,8 @@ These steps will allow you to install k3s-server on a new master node and have a
        kubectl create namespace cert-manager
        kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml 
        sleep 120
-       ```
-     * ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.1.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
+       ```\
+      ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.1.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
 
   * Create ClusterIssuer
      * ```bash
@@ -60,8 +60,7 @@ These steps will allow you to install k3s-server on a new master node and have a
 
 ### Link with an app
 
-* Config your app inside a namespace `{{APP_NAMESPACE}}`
-
+* Config your app inside a namespace `{{APP_NAMESPACE}}`\
   ⚠️ Your ingress **must** be in the same namespace as your app
   
 * Edit `./cert-manager/_examples/ingress-example.yaml` and change:
@@ -88,8 +87,8 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
       * ```bash
         cat /var/lib/rancher/k3s/server/node-token
         # example KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        ```
-      * This is your node token
+        ```\
+        This is your node token
       
  * On your new node :
       * ```
@@ -116,8 +115,8 @@ To update your existing installation with an increased max-pods, add a kubelet c
         ExecStart=/usr/local/bin/k3s \
             server \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
-        ```
-      * ⚠️ **If you have any line after `server \` you may want to keep them**
+        ```\
+      ⚠️ **If you have any line after `server \` you may want to keep them**
          
  * Reload systemctl to pick up the service change then restart k3s:
       * ```
