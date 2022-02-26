@@ -62,14 +62,12 @@ data:
   default.conf: |
     server {
       listen 80 default_server;
-      server_name  _;
-      
-      location /metrics {
-          stub_status on;
-      }
-      
+      server_name ~.+;
+      proxy_connect;
+      proxy_max_temp_file_size 0;
+      resolver 8.8.8.8;
       location / {
-        resolver 8.8.8.8; # may or may not be necessary.
-        proxy_pass http://$http_host$uri$is_args$args;
+         proxy_pass http://$http_host;
+         proxy_set_header Host $http_host;
       }
     }
