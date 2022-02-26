@@ -44,13 +44,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "250m"
-        volumeMounts:
-        - mountPath: /etc/squid3/squid.conf
-          name: proxy-conf
-          subPath: default.conf
+        
       volumes:
       - configMap:
-          defaultMode: 420
+          defaultMode: 777
           name: proxy-map-conf
         name: proxy-conf
 ---
