@@ -11,9 +11,9 @@ spec:
     app: forward-proxy
     tier: backend
   type: NodePort  
----
+---     
 apiVersion: apps/v1        
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: forward-proxy 
   labels:
