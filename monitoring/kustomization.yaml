@@ -1,6 +1,7 @@
 kind: Kustomization
 namespace: monitoring
 resources:
-  - 1_daemonset.yaml
-  - 2_prometheus.yaml
-  - 3_grafana.yaml
+  - 1_ingress.yaml
+  - 2_grafana.yaml
+  - 3_prometheus.yaml
+  - 4_daemonset.yaml
