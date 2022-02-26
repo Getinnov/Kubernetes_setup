@@ -3,8 +3,8 @@ kubectl create namespace monitoring
 kubectl apply -k ./
 ```
 
-
-cat - > test <<EOF apiVersion: v1
+cat - > test <<EOF 
+apiVersion: v1
 kind: ConfigMap
 metadata:
    name: proxy-environment-variables
@@ -12,5 +12,5 @@ metadata:
 data:
    HTTP_PROXY: http://customer.proxy.host:proxy_port
    HTTPS_PROXY: http://customer.proxy.host:proxy_port
-   NO_PROXY: 10.100.0.0/16,localhost,127.0.0.1
+   NO_PROXY: localhost,127.0.0.1
 EOF
