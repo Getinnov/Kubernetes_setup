@@ -77,7 +77,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
         cat /var/lib/rancher/k3s/server/node-token
         # example KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         ```
-      * This is your `{{NODE-TOKEN}}`
+      * This is your node token
       
  * On your new node :
       * ```
