@@ -121,3 +121,5 @@ spec:
           value: "forward-proxy"
         - name: SQUID_PORT
           value: "80"
+        - name: SQUID_EXPORTER_LISTEN
+          value: "0.0.0.0:9301"
