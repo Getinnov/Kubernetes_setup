@@ -2,20 +2,23 @@
 
 Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
-## MASTER NODE:
-
 ### Tested on:
 
-  |OS|Provider|Working|
-  |-|-|-|
-  |Debian 9|OVH|YES|
-  |Debian 10|OVH|YES|
-  |Debian 11|OVH|YES|
+  | OS | Provider | Master Node Working | Agent Node Working |
+  |-|-|-|-|
+  | Debian 9  | OVH | ✅ | ✅ |
+  | Debian 10 | OVH | ✅ | ✅ |
+  | Debian 11 | OVH | ✅ | ✅ |
 
-### Steps:
+## MASTER NODE:
+
+### Installation step by step:
 
   * Edit `./cert-manager/kustomization.yaml`:
-     * Replace `{{EMAIL}}` by your own **valid email**
+     * ```bash
+       EMAIL= # Your email
+       sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
+       ```
 
   * *K3s* Install
      * ```
@@ -26,21 +29,20 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
      * ```bash
        kubectl create namespace cert-manager
        kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml 
-       #./cert-manager/cert-manager.v1.1.1.yaml
        sleep 120
        ```
+     * ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml) is available inside `./cert-manager/kustomization.yaml`
 
   * Create ClusterIssuer
-     * ```
+     * ```bash
        kubectl apply -k ./cert-manager/
        ```
 
-
-
-### Full set of commands
+### Installation script:
   
-  ```
-  nano ./cert-manager/kustomization.yaml
+  ```bash
+  EMAIL= # Your email
+  sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
   curl -sfL https://get.k3s.io |  sh -
   kubectl create namespace cert-manager
   kubectl apply -f ./cert-manager/cert-manager.v1.1.1.yaml
@@ -65,21 +67,20 @@ kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
  * On your master node :
       * ```bash
         cat /var/lib/rancher/k3s/server/node-token
-        # KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        # example KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         ```
       * This is your `{{NODE-TOKEN}}`
       
  * On your new node :
       * ```
-        curl -sfL https://get.k3s.io | K3S_URL=https://{{IP}}:6443 K3S_TOKEN="{{NODE-TOKEN}}" sh -
+        IP= # your master node ip
+        NODETOKEN= # your node token
+        curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -
         ```
-      * Replace `{{IP}}` by your master node ip
-      * Replace `{{NODE-TOKEN}}` by your master node node-token
 
 ## EDIT POD LIMIT
 
-
-To update your existing installation with an increased max-pods, add a kubelet config file into a k3s :
+To update your existing installation with an increased max-pods, add a kubelet config file into a k3s, we will use `/etc/rancher/k3s/kubelet.config` :
  * Edit (or create) `/etc/rancher/k3s/kubelet.config`:
       * ```
         apiVersion: kubelet.config.k8s.io/v1beta1
@@ -88,17 +89,19 @@ To update your existing installation with an increased max-pods, add a kubelet c
         ```
       * Replace `{{PODS_NUMBER}}` by an int
       
- * Edit /etc/systemd/system/k3s.service to change the k3s server args:
+ * Edit `/etc/systemd/system/k3s.service` to change the k3s server args:
       * ```
         ExecStart=/usr/local/bin/k3s \
             server \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
         ```
-        
+      * ⚠️ **If you have any line after `server \` you may want to keep them**
+         
  * Reload systemctl to pick up the service change:
       * ```
         sudo systemctl daemon-reload
         ```
+        
  * Restart k3s:
       * ```
         sudo systemctl restart k3s
