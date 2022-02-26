@@ -2,7 +2,7 @@
 
   * [Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt](#master-node)
   * [Adding node to your cluster](#agent-node)
-  * Changing the maximum number on pods per node
+  * [Changing the maximum number on pods per node](#edit-pod-limit)
   * Monitoring this cluster
 
 ### Tested on:
