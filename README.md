@@ -12,7 +12,10 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
 ## MASTER NODE:
 
-### Installation step by step:
+### Installation and setup step by step:
+
+These steps will allow you to install k3s-server on a new master node and have a traefik ingress cert-manager.
+
 
   * Edit `./cert-manager/kustomization.yaml`:
      * ```bash
@@ -59,10 +62,12 @@ Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be
 kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 ```
 
-## NODE
+## AGENT-NODE
 
 
-### Connect new node:
+### Installation and setup step by step:
+
+These steps will allow you to install k3s-agent on a new node and connect it with an existing cluster.
 
  * On your master node :
       * ```bash
