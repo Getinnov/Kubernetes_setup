@@ -60,7 +60,16 @@ These steps will allow you to install k3s-server on a new master node and have a
 
 ### Link with an app
 
-Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be in the same namespace as your app), then edit `./examples/ingress-example.yaml` and change `{{NAME}}`, `{{DOMAIN}}`, `{{SERVICE}}` and `{{PORT}}` then run
+* Config your app inside a namespace `{{APP_NAMESPACE}}` 
+  * ⚠️ Your ingress **must** be in the same namespace as your app)
+  
+* Edit `./cert-manager/_examples/ingress-example.yaml` and change:
+  * `{{NAME}}`
+  * `{{DOMAIN}}`
+  * `{{SERVICE}}`
+  * `{{PORT}}` 
+  
+* Then run
 
 ```
 kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
