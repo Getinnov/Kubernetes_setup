@@ -82,7 +82,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
  * On your new node :
       * ```
         IP=XX.XX.XX.XX # your master node ip
-        NODETOKEN=KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # your node token
+        NODETOKEN=KXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXX # your node token
         curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -
         ```
 
