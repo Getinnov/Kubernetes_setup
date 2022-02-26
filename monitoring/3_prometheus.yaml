@@ -97,6 +97,6 @@ data:
           regex: 'node-exporter'
           action: keep
       - job_name: 'squid'
-        target_groups:
+        static_configs:
           - targets: ['squid-exporter-service:9301']
           
