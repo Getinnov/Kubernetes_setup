@@ -67,7 +67,7 @@ data:
     disable_login_form = true
     [auth.anonymous]
     enabled = true
-    org_role = Editor
+    org_role = Viewer
   datasource.yml: |+
     apiVersion: 1
     datasources:
