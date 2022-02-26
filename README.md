@@ -23,7 +23,7 @@ These steps will allow you to install k3s-server on a new master node and have a
 
   * Edit `./cert-manager/kustomization.yaml`:
      * ```bash
-       EMAIL= # Your email
+       EMAIL=cluster.acme@newteckstack.fr # Your email
        sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
        ```
 
@@ -91,7 +91,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
       
  * On your new node :
       * ```
-        IP=XX.XX.XX.XX # your master node ip
+        IP=XX.XX.XX.XX # Your master node ip
         NODETOKEN=KXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXX # your node token
         curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -
         ```
@@ -101,7 +101,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
 To update your existing installation with an increased max-pods, add a kubelet config file into a k3s, we will use `/etc/rancher/k3s/kubelet.config` :
  * Edit (or create) `/etc/rancher/k3s/kubelet.config`:
       * ```bash
-        MAXPOD=250 # the number of pods that you want
+        MAXPOD=250 # The number of pods that you want
         cat > /etc/rancher/k3s/kubelet.config <<EOF
         apiVersion: kubelet.config.k8s.io/v1beta1
         kind: KubeletConfiguration
