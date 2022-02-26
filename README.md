@@ -1,6 +1,6 @@
 # Kubernetes (k3s) setup and reverse https (LE) proxy
 
-Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt
+[Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt]()
 Adding node to your cluster
 Changing the maximum number on pods per node
 Monitoring this cluster
@@ -13,7 +13,7 @@ Monitoring this cluster
   | Debian 10 | OVH | ✅ | ✅ |
   | Debian 11 | OVH | ✅ | ✅ |
 
-## [MASTER NODE](#master-node-setup)
+## MASTER NODE:
 
 ### Installation and setup step by step:
 
@@ -65,7 +65,7 @@ Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be
 kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 ```
 
-## [AGENT-NODE](#agent-node-setup)
+## AGENT-NODE:
 
 
 ### Installation and setup step by step:
