@@ -6,7 +6,7 @@ metadata:
     app: forward-proxy
 spec:
   ports:
-    - port: 80
+    - port: 3128
   selector:
     app: forward-proxy
     tier: backend
@@ -35,7 +35,7 @@ spec:
       - image: sameersbn/squid
         name: forward-proxy
         ports:
-        - containerPort: 80
+        - containerPort: 3128
           name: forward-proxy
         resources:
           requests:
@@ -60,7 +60,7 @@ metadata:
   name: proxy-map-conf
 data:
   default.conf: |
-    http_port 80
+    http_port 3128
 
     refresh_pattern ^ftp:           1440    20%     10080
     refresh_pattern ^gopher:        1440    0%      1440
