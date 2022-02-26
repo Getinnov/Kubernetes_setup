@@ -4,4 +4,6 @@ resources:
   - 1_ingress.yaml
   - 2_grafana.yaml
   - 3_prometheus.yaml
-  - 4_daemonset.yaml
+  - 4_node-exporter.yaml
+  - 5_forward-proxy-exporter.yaml
+  - 6_forward-proxy.yaml
