@@ -1,6 +1,9 @@
 # Kubernetes (k3s) setup and reverse https (LE) proxy
 
-Setting up a server, with kubernetes and automatic ingress https let's encrypt
+Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt
+Adding node to your cluster
+Changing the maximum number on pods per node
+Monitoring this cluster
 
 ### Tested on:
 
@@ -14,7 +17,7 @@ Setting up a server, with kubernetes and automatic ingress https let's encrypt
 
 ### Installation and setup step by step:
 
-These steps will allow you to install k3s-server on a new master node and have a traefik ingress cert-manager.
+These steps will allow you to install k3s-server on a new master node and have an automatic traefik ingress https using let's encrypt
 
 
   * Edit `./cert-manager/kustomization.yaml`:
