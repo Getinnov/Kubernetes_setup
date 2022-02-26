@@ -22,9 +22,7 @@ spec:
   selector:
     matchLabels:
       app: forward-proxy
-      tier: backend       
-  strategy:
-    type: Recreate
+      tier: backend
   template:
     metadata:
       labels:
