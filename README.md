@@ -38,7 +38,7 @@ These steps will allow you to install k3s-server on a new master node and have a
        kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml 
        sleep 120
        ```
-     * ℹ A copy of [cert-manager v1.1.1](https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml) is available inside [`cert-manager/_sources/cert-manager.v1.1.1.yaml`](./cert-manager/_sources/cert-manager.v1.1.1.yaml)
+     * ℹ A copy of [cert-manager v1.1.1](https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml) is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
 
   * Create ClusterIssuer
      * ```bash
