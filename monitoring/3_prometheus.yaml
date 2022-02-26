@@ -1,19 +1,16 @@
 apiVersion: v1
-kind: ConfigMap
+kind: Service
 metadata:
-  name: prometheus-config
   namespace: monitoring
-data:
-  prometheus.yaml: |
-    global:
-      scrape_interval:     15s
-      external_labels:
-        monitor: 'k3s-monitor'
-    scrape_configs:
-      - job_name: 'node'
-        scrape_interval: 5s
-        static_configs:
-          - targets: ['10.42.0.123:9100','10.42.1.86:9100']
+  name: prometheus-service
+spec:
+  selector:
+    app: prometheus
+  ports:
+  - protocol: TCP
+    port: 9090
+    targetPort: 9090
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -80,16 +77,19 @@ subjects:
   name: default
   namespace: monitoring
 ---
-kind: Service
 apiVersion: v1
+kind: ConfigMap
 metadata:
+  name: prometheus-config
   namespace: monitoring
-  name: prometheus-service
-spec:
-  selector:
-    app: prometheus
-  ports:
-  - protocol: TCP
-    port: 9090
-    targetPort: 9090
-  type: NodePort
+data:
+  prometheus.yaml: |
+    global:
+      scrape_interval:     15s
+      external_labels:
+        monitor: 'k3s-monitor'
+    scrape_configs:
+      - job_name: 'node'
+        scrape_interval: 5s
+        static_configs:
+          - targets: ['10.42.0.123:9100','10.42.1.86:9100']
