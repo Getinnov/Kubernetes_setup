@@ -39,6 +39,10 @@ spec:
             path: grafana.ini
           - key: datasource.yml
             path: provisioning/datasources/datasource.yml
+          - key: dashboards.yml
+            path: provisioning/dashboards/dashboards.yml
+          - key: dashboard.json
+            path: dashboard.json
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
