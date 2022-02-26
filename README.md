@@ -1,9 +1,9 @@
 # Kubernetes (k3s) setup and reverse https (LE) proxy
 
-[Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt]()
-Adding node to your cluster
-Changing the maximum number on pods per node
-Monitoring this cluster
+  * [Setting up a master node, with K3S, automatic traefik ingress https using let's encrypt](#master-node)
+  * [Adding node to your cluster](#agent-node)
+  * Changing the maximum number on pods per node
+  * Monitoring this cluster
 
 ### Tested on:
 
