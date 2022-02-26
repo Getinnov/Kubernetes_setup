@@ -38,7 +38,7 @@ spec:
           - key: grafana.ini
             path: grafana.ini
           - key: datasource.yml
-            path: provisioning/datasources/datasource.yml
+            path: /usr/share/grafana/conf/provisioning/datasources/datasource.yml
       securityContext:
         runAsUser: 1001
         runAsGroup: 1001
