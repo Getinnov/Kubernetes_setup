@@ -38,7 +38,7 @@ These steps will allow you to install k3s-server on a new master node and have a
        kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.1.1/cert-manager.yaml 
        sleep 120
        ```\
-      ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.1.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
+       ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.1.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
 
   * Create ClusterIssuer
      * ```bash
@@ -116,7 +116,7 @@ To update your existing installation with an increased max-pods, add a kubelet c
             server \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
         ```\
-      ⚠️ **If you have any line after `server \` you may want to keep them**
+        ⚠️ **If you have any line after `server \` you may want to keep them**
          
  * Reload systemctl to pick up the service change then restart k3s:
       * ```
