@@ -87,10 +87,13 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
 
 To update your existing installation with an increased max-pods, add a kubelet config file into a k3s, we will use `/etc/rancher/k3s/kubelet.config` :
  * Edit (or create) `/etc/rancher/k3s/kubelet.config`:
-      * ```
+      * ```bash
+        MAXPOD=250
+        cat > /etc/rancher/k3s/kubelet.config <<EOF
         apiVersion: kubelet.config.k8s.io/v1beta1
         kind: KubeletConfiguration
-        maxPods: {{PODS_NUMBER}}
+        maxPods: $MAXPOD
+        EOF
         ```
       * Replace `{{PODS_NUMBER}}` by an int
       
