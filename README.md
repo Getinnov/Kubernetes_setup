@@ -8,7 +8,7 @@
 ### Tested on:
 
   | OS | Provider | Master Node Working | Agent Node Working |
-  |-|-|-|-|
+  |-|-| - | - |
   | Debian 9  | OVH | ✅ | ✅ |
   | Debian 10 | OVH | ✅ | ✅ |
   | Debian 11 | OVH | ✅ | ✅ |
