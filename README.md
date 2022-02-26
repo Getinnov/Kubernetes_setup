@@ -13,7 +13,7 @@ Monitoring this cluster
   | Debian 10 | OVH | ✅ | ✅ |
   | Debian 11 | OVH | ✅ | ✅ |
 
-## MASTER NODE:
+## [MASTER NODE](#master-node-setup)
 
 ### Installation and setup step by step:
 
@@ -65,7 +65,7 @@ Config your app inside a namespace `{{APP_NAMESPACE}}` (your ingress **must** be
 kubectl -n {{APP_NAMESPACE}} apply -f ./examples/ingress-example.yaml
 ```
 
-## AGENT-NODE
+## [AGENT-NODE](#agent-node-setup)
 
 
 ### Installation and setup step by step:
