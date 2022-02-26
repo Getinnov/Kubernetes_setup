@@ -108,12 +108,8 @@ To update your existing installation with an increased max-pods, add a kubelet c
         ```
       * ⚠️ **If you have any line after `server \` you may want to keep them**
          
- * Reload systemctl to pick up the service change:
+ * Reload systemctl to pick up the service change then restart k3s:
       * ```
-        sudo systemctl daemon-reload
-        ```
-        
- * Restart k3s:
-      * ```
-        sudo systemctl restart k3s
+        systemctl daemon-reload
+        systemctl restart k3s
         ```
