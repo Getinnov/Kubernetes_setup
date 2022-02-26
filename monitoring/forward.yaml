@@ -47,7 +47,6 @@ spec:
         
       volumes:
       - configMap:
-          defaultMode: 777
           name: proxy-map-conf
         name: proxy-conf
 ---
