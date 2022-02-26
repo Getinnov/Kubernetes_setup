@@ -96,7 +96,7 @@ data:
         - source_labels: [__meta_kubernetes_endpoints_name]
           regex: 'node-exporter'
           action: keep
-      - job_name: squid
+      - job_name: 'squid'
         target_groups:
           - targets: ['squid-exporter-service:9301']
           
