@@ -32,7 +32,7 @@ spec:
         tier: backend     
     spec:
       containers:
-      - image: nginx:1.21
+      - image: sameersbn/squid
         name: forward-proxy
         ports:
         - containerPort: 80
@@ -45,7 +45,7 @@ spec:
             memory: "128Mi"
             cpu: "250m"
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d/default.conf
+        - mountPath: /etc/squid3/squid.conf
           name: proxy-conf
           subPath: default.conf
       volumes:
@@ -60,14 +60,38 @@ metadata:
   name: proxy-map-conf
 data:
   default.conf: |
-    server {
-      listen 80 default_server;
-      server_name ~.+;
-      proxy_connect;
-      proxy_max_temp_file_size 0;
-      resolver 8.8.8.8;
-      location / {
-         proxy_pass http://$http_host;
-         proxy_set_header Host $http_host;
-      }
-    }
+    http_port 80
+
+    refresh_pattern ^ftp:           1440    20%     10080
+    refresh_pattern ^gopher:        1440    0%      1440
+    refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+    refresh_pattern .               0       20%     4320
+
+    acl localnet src 10.0.0.0/8     # RFC 1918 possible internal network
+    acl localnet src 172.16.0.0/12  # RFC 1918 possible internal network
+    acl localnet src 192.168.0.0/16 # RFC 1918 possible internal network
+    acl localnet src fc00::/7       # RFC 4193 local private network range
+    acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
+    acl all      src 0.0.0.0/0.0.0.0
+
+    acl SSL_ports port 443          # https
+
+    acl Safe_ports port 80          # http
+    acl Safe_ports port 21          # ftp
+    acl Safe_ports port 443         # https
+    acl Safe_ports port 70          # gopher
+    acl Safe_ports port 210         # wais
+    acl Safe_ports port 1025-65535  # unregistered ports
+    acl Safe_ports port 280         # http-mgmt
+    acl Safe_ports port 488         # gss-http
+    acl Safe_ports port 591         # filemaker
+    acl Safe_ports port 777         # multiling http
+
+    acl CONNECT method CONNECT
+
+    http_access allow manager localhost
+    http_access allow all
+    http_access deny manager
+    http_access deny !Safe_ports
+    http_access deny CONNECT !SSL_ports
+    http_access allow localhost
