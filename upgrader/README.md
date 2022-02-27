@@ -4,5 +4,13 @@ This upgrader autoupgrade your master and agent node to the latest stable versio
 
 
 to upgrade manually:
-  master: `curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -`
-  node: `curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -`
+  * master: `curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -`
+  
+  * node: `curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -`
+
+
+```
+IP=$(kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo)
+NODETOKEN=$(cat /var/lib/rancher/k3s/server/node-token)
+echo "curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL='https://$IP:6443' K3S_TOKEN='$NODETOKEN' sh -"
+```
