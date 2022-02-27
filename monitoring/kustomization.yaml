@@ -5,5 +5,4 @@ resources:
   - 2_grafana.yaml
   - 3_prometheus.yaml
   - 4_node-exporter.yaml
-  - 5_forward-proxy-exporter.yaml
-  - 6_forward-proxy.yaml
+  - 5_kube-state-metrics.yaml
