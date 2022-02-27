@@ -5,4 +5,4 @@ configMapGenerator:
     literals:
     - email={{EMAIL}}
 resources:
-  - letsencrypt.kus.yaml
+  - 1_letsencrypt.yaml
