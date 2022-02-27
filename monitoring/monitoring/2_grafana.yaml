@@ -68,6 +68,8 @@ data:
     [auth.anonymous]
     enabled = true
     org_role = Viewer
+    [dashboards]
+    default_home_dashboard_path = dashboard.json
   datasource.yml: |+
     apiVersion: 1
     datasources:
