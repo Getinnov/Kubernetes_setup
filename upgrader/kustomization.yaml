@@ -1,0 +1,5 @@
+kind: Kustomization
+namespace: system-upgrade
+resources:
+  - 1_system-upgrade-controller.yaml
+  - 2_upgrader.yaml
