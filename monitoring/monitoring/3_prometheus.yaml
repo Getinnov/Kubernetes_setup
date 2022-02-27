@@ -115,7 +115,7 @@ data:
         labels:
           severity: warning
         annotations:
-          message: CPU minimum usage {{ printf "%0.0f" $value }}%.
+          summary: CPU minimum usage {{ printf "%0.0f" $value }}%.
       - alert: High Pod Memory
         expr: |
           sum(kube_pod_container_resource_requests{resource="memory"})/ sum(kube_node_status_allocatable{resource="memory"}) * 100 > 30
@@ -123,7 +123,7 @@ data:
         labels:
           severity: warning
         annotations:
-          message: RAM minimum usage {{ printf "%0.0f" $value }}%.
+          summary: RAM minimum usage {{ printf "%0.0f" $value }}%.
       - alert: Cluster Heavy load
         expr: |
           sum(node_load1) / count(count(node_cpu_seconds_total{job="node-exporter"}) by (cpu)) * 100 > 50
@@ -131,8 +131,7 @@ data:
         labels:
           severity: warning
         annotations:
-          message: Cluster load is currently {{ printf "%0.0f" $value }}%.
-
+          summary: Cluster load is currently {{ printf "%0.0f" $value }}%.
     - name: metrics
       rules:
       - alert: KubeStateMetricsDown
