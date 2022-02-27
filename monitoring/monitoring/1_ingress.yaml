@@ -8,6 +8,15 @@ spec:
     scheme: https
     permanent: true
 ---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  namespace: monitoring
+  name: redirect-kiosk
+spec:
+  replacePath:
+    path: /d/newtechstack/dashboard?orgId=1&refresh=5s&kiosk
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -15,7 +24,7 @@ metadata:
   namespace: monitoring
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd, monitoring-redirect-kiosk@kubernetescrd
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
@@ -33,30 +42,3 @@ spec:
                 name: grafana-service
                 port:
                   number: 3000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name:  prometheus
-  namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  tls:
-    - secretName: prometheus-cert
-      hosts:
-        - prometheus.cluster.newtechstack.fr
-  rules:
-    - host: prometheus.cluster.newtechstack.fr
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: prometheus-service
-                port:
-                  number: 9090
-

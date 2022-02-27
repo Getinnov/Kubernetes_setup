@@ -67,7 +67,7 @@ data:
     disable_login_form = true
     [auth.anonymous]
     enabled = true
-    org_role = Editor
+    org_role = Viewer
   datasource.yml: |+
     apiVersion: 1
     datasources:
@@ -1881,13 +1881,13 @@ data:
         "list": []
       },
       "time": {
-        "from": "now-30m",
+        "from": "now-6h",
         "to": "now"
       },
       "timepicker": {},
       "timezone": "",
-      "title": "New dashboa",
-      "uid": "elvt4qBntmp",
+      "title": "dashboard",
+      "uid": "newtechstack",
       "version": 1,
       "weekStart": ""
     }
