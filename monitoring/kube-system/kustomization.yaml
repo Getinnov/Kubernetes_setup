@@ -2,3 +2,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - 1_kube-state-metrics.yaml
+  - 2_traefik-metrics.yaml
