@@ -15,7 +15,7 @@ metadata:
   name: redirect-kiosk
 spec:
   replacePathRegex:
-    regex: ^/(?!public\/(fonts|build|img)\/)(.*)
+    regex: ^(?!.*public/(fonts|build|img)/)(.*)
     path: /d/newtechstack/dashboard?orgId=1&refresh=5s&kiosk
 ---
 apiVersion: networking.k8s.io/v1
