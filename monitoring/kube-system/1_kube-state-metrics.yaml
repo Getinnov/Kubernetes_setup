@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.4.1
   name: kube-state-metrics
-  namespace: monitoring
+  namespace: kube-system
 spec:
   type: ClusterIP
   ports:
@@ -27,7 +27,7 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.4.1
   name: kube-state-metrics
-  namespace: monitoring
+  namespace: kube-system
 spec:
   replicas: 1
   selector:
@@ -81,7 +81,7 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.4.1
   name: kube-state-metrics
-  namespace: monitoring
+  namespace: kube-system
 --- 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
