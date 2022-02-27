@@ -108,23 +108,39 @@ data:
     groups:
     - name: cluster ressources
       rules:
-      - alert: High Pod CPU
+      - alert: CPU minimum usage over 50%
         expr: |
-          sum(kube_pod_container_resource_requests{resource="cpu"})/ sum(kube_node_status_allocatable{resource="cpu"}) * 100 > 30
+          sum(kube_pod_container_resource_requests{resource="cpu"})/ sum(kube_node_status_allocatable{resource="cpu"}) * 100 > 50
         for: 1m
         labels:
           severity: warning
         annotations:
           summary: CPU minimum usage {{ printf "%0.0f" $value }}%.
-      - alert: High Pod Memory
+      - alert: CPU minimum usage over 70%
         expr: |
-          sum(kube_pod_container_resource_requests{resource="memory"})/ sum(kube_node_status_allocatable{resource="memory"}) * 100 > 30
+          sum(kube_pod_container_resource_requests{resource="cpu"})/ sum(kube_node_status_allocatable{resource="cpu"}) * 100 > 70
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: CPU minimum usage {{ printf "%0.0f" $value }}%.
+      - alert: Memory minimum usage over 50%
+        expr: |
+          sum(kube_pod_container_resource_requests{resource="memory"})/ sum(kube_node_status_allocatable{resource="memory"}) * 100 > 50
         for: 1m
         labels:
           severity: warning
         annotations:
           summary: RAM minimum usage {{ printf "%0.0f" $value }}%.
-      - alert: Cluster Heavy load
+      - alert: Memory minimum usage over 70%
+        expr: |
+          sum(kube_pod_container_resource_requests{resource="memory"})/ sum(kube_node_status_allocatable{resource="memory"}) * 100 > 70
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: RAM minimum usage {{ printf "%0.0f" $value }}%.
+      - alert: Cluster load over 50%
         expr: |
           sum(node_load1) / count(count(node_cpu_seconds_total{job="node-exporter"}) by (cpu)) * 100 > 50
         for: 1m
@@ -132,12 +148,19 @@ data:
           severity: warning
         annotations:
           summary: Cluster load is currently {{ printf "%0.0f" $value }}%.
+      - alert: Cluster load over 90%
+        expr: |
+          sum(node_load1) / count(count(node_cpu_seconds_total{job="node-exporter"}) by (cpu)) * 100 > 90
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Cluster load is currently {{ printf "%0.0f" $value }}%.
     - name: metrics
       rules:
       - alert: KubeStateMetricsDown
         annotations:
-          message: KubeStateMetrics has disappeared from Prometheus target discovery.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubestatemetricsdown
+          summary: KubeStateMetrics has disappeared from Prometheus target discovery.
         expr: |
           absent(up{job="kube-state-metrics"} == 1)
         for: 15m
@@ -145,8 +168,7 @@ data:
           severity: critical
       - alert: NodeExporterDown
         annotations:
-          message: NodeExporter has disappeared from Prometheus target discovery.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-nodeexporterdown
+          summary: NodeExporter has disappeared from Prometheus target discovery.
         expr: |
           absent(up{job="node-exporter"} == 1)
         for: 15m
@@ -154,21 +176,19 @@ data:
           severity: critical
     - name: Kube app
       rules:
-      - alert: KubePodCrashLooping
+      - alert: Pod Crash Looping
         annotations:
-          message: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container
+          summary: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container
             }}) is restarting {{ printf "%.2f" $value }} times / 5 minutes.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubepodcrashlooping
         expr: |
           rate(kube_pod_container_status_restarts_total{job="kube-state-metrics"}[15m]) * 60 * 5 > 0
         for: 1h
         labels:
           severity: critical
-      - alert: KubeDeploymentReplicasMismatch
+      - alert: Deployment Replicas Mismatch
         annotations:
-          message: Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has not
+          summary: Deployment {{ $labels.namespace }}/{{ $labels.deployment }} has not
             matched the expected number of replicas for longer than an hour.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubedeploymentreplicasmismatch
         expr: |
           kube_deployment_spec_replicas{job="kube-state-metrics"}
             !=
@@ -176,11 +196,10 @@ data:
         for: 1h
         labels:
           severity: critical
-      - alert: KubeStatefulSetReplicasMismatch
+      - alert: Stateful Set Replicas Mismatch
         annotations:
-          message: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has
+          summary: StatefulSet {{ $labels.namespace }}/{{ $labels.statefulset }} has
             not matched the expected number of replicas for longer than 15 minutes.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubestatefulsetreplicasmismatch
         expr: |
           kube_statefulset_status_replicas_ready{job="kube-state-metrics"}
             !=
@@ -188,11 +207,10 @@ data:
         for: 15m
         labels:
           severity: critical
-      - alert: KubeDaemonSetRolloutStuck
+      - alert: DaemonSet Rollout Stuck
         annotations:
-          message: Only {{ $value }}% of the desired Pods of DaemonSet {{ $labels.namespace
+          summary: Only {{ $value }}% of the desired Pods of DaemonSet {{ $labels.namespace
             }}/{{ $labels.daemonset }} are scheduled and ready.
-          runbook_url: https://github.com/kubernetes-monitoring/kubernetes-mixin/tree/master/runbook.md#alert-name-kubedaemonsetrolloutstuck
         expr: |
           kube_daemonset_status_number_ready{job="kube-state-metrics"}
             /
