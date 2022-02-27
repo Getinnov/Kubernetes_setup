@@ -4,11 +4,11 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    name: email
-    valueFrom:
-      configMapKeyRef:
-        name: letsencrypt
-        key: email
+    - name: email
+      valueFrom:
+        configMapKeyRef:
+          name: letsencrypt
+          key: email
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: prod-issuer-account-key
