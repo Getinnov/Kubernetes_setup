@@ -1,0 +1,4 @@
+kind: Kustomization
+namespace: kube-system
+resources:
+  - 1_kube-state-metrics.yaml
