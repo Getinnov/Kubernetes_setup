@@ -126,3 +126,4 @@ To update your existing installation with an increased max-pods, add a kubelet c
         systemctl daemon-reload
         systemctl restart k3s
         ```
+       if you encounter an `Failed to allocate` error `sysctl fs.inotify.max_user_instances=512`
