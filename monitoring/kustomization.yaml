@@ -1,4 +1,4 @@
 kind: Kustomization
 resources:
-  - monitoring/kustomization.yaml
-  - kube-system/kustomization.yaml
+  - monitoring/
+  - kube-system/
