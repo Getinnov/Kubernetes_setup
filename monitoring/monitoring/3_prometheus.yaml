@@ -36,12 +36,29 @@ spec:
           - name: config-volume
             mountPath: /etc/prometheus/prometheus.yml
             subPath: prometheus.yaml
+          - name: prometheus-storage-volume
+            mountPath: /prometheus/
         ports:
         - containerPort: 9090
       volumes:
         - name: config-volume
           configMap:
-           name: prometheus-config
+        - name: prometheus-storage-volume
+          persistentVolumeClaim:
+            claimName: prometheus-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-pv-claim
+  labels:
+    app: prometheus
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -99,4 +116,6 @@ data:
       - job_name: 'kube-state-metrics'
         static_configs:
           - targets: ['kube-state-metrics.kube-system.svc.cluster.local:8080', 'kube-state-metrics.kube-system.svc.cluster.local:8081']
-          
+      - job_name: 'traefik-metrics'
+        static_configs:
+          - targets: ['traefik-metrics.kube-system.svc.cluster.local:9100']

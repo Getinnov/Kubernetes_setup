@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-metrics
+  namespace: kube-system
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '9100'
+spec:
+  selector:
+      app.kubernetes.io/instance: traefik
+      app.kubernetes.io/name: traefik
+  ports:
+  - name: traefik-metrics
+    protocol: TCP
+    port: 9100
+    targetPort: 9100
