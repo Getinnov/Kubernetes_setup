@@ -216,6 +216,8 @@ data:
       scrape_interval:     15s
       external_labels:
         monitor: 'k3s-monitor'
+    rule_files:
+      - /etc/prometheus/prometheus.rules
     scrape_configs:
       - job_name: 'node-exporter'
         kubernetes_sd_configs:
