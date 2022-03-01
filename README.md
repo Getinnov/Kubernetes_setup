@@ -57,6 +57,13 @@ These steps will allow you to install k3s-server on a new master node and have a
   kubectl apply -k ./cert-manager/
   ```
   
+  Common errors:
+  - `Error from server (InternalError): error when creating "./": Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": x509: certificate signed by unknown authority`
+    ```
+    kubectl delete mutatingwebhookconfiguration.admissionregistration.k8s.io cert-manager-webhook
+    kubectl delete validatingwebhookconfigurations.admissionregistration.k8s.io cert-manager-webhook
+    ```
+  
 
 ### Link with an app
 
