@@ -35,10 +35,10 @@ These steps will allow you to install k3s-server on a new master node and have a
   * *Cert-manager* install
      * ```bash
        kubectl create namespace cert-manager
-       kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cert-manager.yaml
+       kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.1.1/cert-manager.yaml
        sleep 120
        ```
-      ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.7.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.7.1.yaml))
+      ℹ A copy of [cert-manager](https://github.com/jetstack/cert-manager) v1.1.1 is available inside `cert-manager/_sources/cert-manager.v1.1.1.yaml`([here](./cert-manager/_sources/cert-manager.v1.1.1.yaml))
 
   * Create ClusterIssuer
      * ```bash
@@ -52,7 +52,7 @@ These steps will allow you to install k3s-server on a new master node and have a
   sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
   curl -sfL https://get.k3s.io |  sh -
   kubectl create namespace cert-manager
-  kubectl apply -f ./cert-manager/_sources/cert-manager.v1.7.1.yaml
+  kubectl apply -f ./cert-manager/_sources/cert-manager.v1.1.1.yaml
   sleep 120
   kubectl apply -k ./cert-manager/
   ```
