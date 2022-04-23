@@ -105,7 +105,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
       * ```
         IP=XX.XX.XX.XX # Your master node ip
         NODETOKEN=KXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXX # your node token
-        curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" sh -
+        curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" INSTALL_K3S_VERSION=v1.23.4+k3s1 sh -
         ```
 
 ## EDIT POD LIMIT
