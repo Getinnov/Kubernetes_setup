@@ -90,15 +90,16 @@ These steps will allow you to install k3s-server on a new master node and have a
 
 These steps will allow you to install k3s-agent on a new node and connect it with an existing cluster.
 
- * On your master node, get your node token:
-      * ```bash
+ * On your master node:
+      * get your node token:
+        ```bash
         cat /var/lib/rancher/k3s/server/node-token
         # example KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         ```
- * On your master node, get your ip:
-      * ```
-        kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo
-        ```
+      * get your ip:
+      ```
+      kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo
+      ```
       
  * On your new node :
       * ```
