@@ -21,6 +21,7 @@ spec:
         enabled: true
   dashboard:
     enabled: true
+    port: 8443
     ssl: true
   monitoring:
     enabled: false
