@@ -97,9 +97,9 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
         # example KXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         ```
       * get your ip:
-      ```
-      kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo
-      ```
+        ```
+        kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo
+        ```
       
  * On your new node :
       * ```
