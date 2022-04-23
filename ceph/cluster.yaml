@@ -7,7 +7,7 @@ spec:
   cephVersion:
     image: 'quay.io/ceph/ceph:v16.2.6'
     allowUnsupported: false
-  dataDirHostPath: /var/lib/rook2
+  dataDirHostPath: /var/lib/rook
   skipUpgradeChecks: false
   continueUpgradeAfterChecksEvenIfNotHealthy: false
   waitTimeoutForHealthyOSDInMinutes: 10
