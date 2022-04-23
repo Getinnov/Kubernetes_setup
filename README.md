@@ -127,6 +127,7 @@ To update your existing installation with an increased max-pods, add a kubelet c
             server \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
         ```
+        
        ⚠️ **If you have any line after `server \` you may want to keep them**
          
  * Reload systemctl to pick up the service change then restart k3s:
