@@ -138,7 +138,7 @@ To update your existing installation with an increased max-pods, add a kubelet c
         
       ⚠️ **If you have any line after `server \` you may want to keep them**
         
- * On your agent node edit `/etc/systemd/system/k3s.service` to change the k3s server args:
+ * On your agent node edit `/etc/systemd/system/k3s-agent.service` to change the k3s server args:
       * ```
         ExecStart=/usr/local/bin/k3s \
             server \
