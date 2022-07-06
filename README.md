@@ -129,27 +129,35 @@ To update your existing installation with an increased max-pods, add a kubelet c
         EOF
         ```
       
- * On your master node edit `/etc/systemd/system/k3s.service` to change the k3s server args:
-      * ```
+ * On your master node: 
+      * Edit `/etc/systemd/system/k3s.service` to change the k3s server args:
+        ```
         ExecStart=/usr/local/bin/k3s \
             server \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
         ```
+        ⚠️ **If you have any line after `server \` you may want to keep them**
+      * Reload systemctl to pick up the service change then restart k3s:
+        ```
+        systemctl daemon-reload
+        systemctl restart k3s
+        ```
+        If you encounter an `Failed to allocate` error `sysctl fs.inotify.max_user_instances=512`  
+     
         
-      ⚠️ **If you have any line after `server \` you may want to keep them**
-        
- * On your agent node edit `/etc/systemd/system/k3s-agent.service` to change the k3s server args:
-      * ```
+ * On your agent node:
+      * Edit `/etc/systemd/system/k3s-agent.service` to change the k3s server args:
+        ```
         ExecStart=/usr/local/bin/k3s \
             agent \
                 '--kubelet-arg=config=/etc/rancher/k3s/kubelet.config'
         ```
-        
-      ⚠️ **If you have any line after `agent \` you may want to keep them** 
-         
- * Reload systemctl to pick up the service change then restart k3s:
-      * ```
-        systemctl daemon-reload
-        systemctl restart k3s
+        ⚠️ **If you have any line after `agent \` you may want to keep them** 
+      * Reload systemctl to pick up the service change then restart k3s:
         ```
-       if you encounter an `Failed to allocate` error `sysctl fs.inotify.max_user_instances=512`
+        systemctl daemon-reload
+        systemctl restart k3s-agent
+        ```
+        If you encounter an `Failed to allocate` error `sysctl fs.inotify.max_user_instances=512`  
+         
+ 
