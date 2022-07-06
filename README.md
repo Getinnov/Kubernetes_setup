@@ -121,6 +121,7 @@ To update your existing installation with an increased max-pods, add a kubelet c
  * Edit (or create) `/etc/rancher/k3s/kubelet.config`:
       * ```bash
         MAXPOD=250 # The number of pods that you want
+        mkdir -p /etc/rancher/k3s
         cat > /etc/rancher/k3s/kubelet.config <<EOF
         apiVersion: kubelet.config.k8s.io/v1beta1
         kind: KubeletConfiguration
