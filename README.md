@@ -100,6 +100,12 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
         ```
         kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo
         ```
+      * generate command:
+        ```
+        TOKEN=$(cat /var/lib/rancher/k3s/server/node-token)
+        IP=$(kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo)
+        echo 'curl -sfL https://get.k3s.io | K3S_URL="https://'$IP':6443" K3S_TOKEN="'$NODETOKEN'" INSTALL_K3S_VERSION=v1.23.4+k3s1 sh -'
+        ```
       
  * On your new node :
       * ```
@@ -107,6 +113,7 @@ These steps will allow you to install k3s-agent on a new node and connect it wit
         NODETOKEN=KXXXXXXXXXXXXXXXXXXXXXX::server:XXXXXXXXXXXXXXXXXXXXXXXXX # your node token
         curl -sfL https://get.k3s.io | K3S_URL="https://$IP:6443" K3S_TOKEN="$NODETOKEN" INSTALL_K3S_VERSION=v1.23.4+k3s1 sh -
         ```
+        or the generated command
 
 ## EDIT POD LIMIT
 
