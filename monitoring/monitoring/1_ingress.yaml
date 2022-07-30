@@ -15,8 +15,8 @@ metadata:
   name: redirect-kiosk
 spec:
   redirectRegex:
-    regex: ^(.*)(&kiosk){0,1}
-    path: ${1}&refresh=5s&kiosk
+    regex: ^https://([^/]*)/([^/]*)$
+    replacement: https://${1}/d/newtechstack/dashboard?orgId=1&refresh=5s&kiosk
     permanent: true
 ---
 apiVersion: networking.k8s.io/v1
@@ -26,7 +26,7 @@ metadata:
   namespace: monitoring
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: monitoring-redirect-https@kubernetescrd, monitoring-redirect-kiosk@kubernetescrd
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
