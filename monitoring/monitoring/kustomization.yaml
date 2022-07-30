@@ -5,3 +5,4 @@ resources:
   - 2_grafana.yaml
   - 3_prometheus.yaml
   - 4_node-exporter.yaml
+  - 5_network-policies.yaml
