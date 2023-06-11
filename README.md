@@ -24,7 +24,7 @@ These steps will allow you to install k3s-server on a new master node and have a
   * Edit `./cert-manager/kustomization.yaml`:
      * ```bash
        EMAIL=cluster.acme@newteckstack.fr # Your email
-       sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
+       sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/*.yaml
        ```
 
   * *K3s* Install
@@ -49,7 +49,7 @@ These steps will allow you to install k3s-server on a new master node and have a
   
   ```bash
   EMAIL=cluster.acme@newteckstack.fr # Your email
-  sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/kustomization.yaml
+  sed -i "s/{{EMAIL}}/$EMAIL/g" ./cert-manager/*.yaml
   curl -sfL https://get.k3s.io |  sh -
   kubectl create namespace cert-manager
   kubectl apply -f ./cert-manager/_sources/cert-manager.v1.7.1.yaml
